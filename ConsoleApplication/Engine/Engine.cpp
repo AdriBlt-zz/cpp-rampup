@@ -3,9 +3,24 @@
 
 #include "pch.h"
 #include <iostream>
+#include <string>
+#include "LinkedList.h"
 
 int main()
 {
+	using namespace std;
+
+	LinkedList<std::string> list;
+	for (int i = 0; i < 10; i++) {
+		string value = to_string(i*i);
+		list.pushFirst(value);
+	}
+
+	cout << list.popFirst() << endl;
+	cout << list.peekFirst() << endl;
+	cout << list.size() << endl;
+	cout << list.toString() << endl;
+
 	return 0;
 }
 
