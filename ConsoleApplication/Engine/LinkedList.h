@@ -1,18 +1,20 @@
 #pragma once
 #include <string>
 
-template <class T>
-class Node {
-public:
-	T m_value;
-	Node* m_previous;
-	Node* m_next;
-	Node(T& value) : m_value(value) {}
-};
 
 template <class T>
 class LinkedList {
 private:
+
+	template <class T>
+	class Node {
+	public:
+		T m_value;
+		Node* m_previous;
+		Node* m_next;
+		Node(T& value) : m_value(value) {}
+	};
+
 	Node<T>* m_head;
 	Node<T>* m_tail;
 	int m_length;
