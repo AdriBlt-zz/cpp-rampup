@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 
-
 template <class T>
 class LinkedList {
 private:

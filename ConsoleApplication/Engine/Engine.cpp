@@ -4,12 +4,12 @@
 #include "pch.h"
 #include <iostream>
 #include <string>
-#include "LinkedList.h"
 
 int main()
 {
 	using namespace std;
 
+	/* // LinkedList
 	LinkedList<std::string> list;
 	for (int i = 0; i < 10; i++) {
 		string value = to_string(i*i);
@@ -20,6 +20,7 @@ int main()
 	cout << list.peekFirst() << endl;
 	cout << list.size() << endl;
 	cout << list.toString() << endl;
+	*/
 
 	return 0;
 }
