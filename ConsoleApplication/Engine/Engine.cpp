@@ -30,6 +30,9 @@ int main()
 	shuffle(list, 10);
 	print(list, 10);
 
+	bubbleSort(list, 10);
+	print(list, 10);
+
 	delete[] list;
 
 	return 0;

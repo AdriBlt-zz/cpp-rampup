@@ -18,3 +18,27 @@ void shuffle(T* list, int length) {
 		}
 	}
 }
+
+template <class T>
+void bubbleSort(T* list, int length) {
+	if (length == 1) {
+		return;
+	}
+
+	int maxElementIndex;
+	T* maxElementPtr;
+	for (int len = length; len > 1; len--) {
+		maxElementIndex = 0;
+		maxElementPtr = &list[0];
+		for (int i = 1; i < len; i++) {
+			if (list[i] > *maxElementPtr) {
+				maxElementIndex = i;
+				maxElementPtr = &list[i];
+			}
+		}
+
+		if (maxElementIndex != len - 1) {
+			swap(maxElementPtr, &list[len - 1]);
+		}
+	}
+}
