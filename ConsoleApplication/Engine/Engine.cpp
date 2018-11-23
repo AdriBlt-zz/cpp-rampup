@@ -4,6 +4,7 @@
 #include "pch.h"
 #include <iostream>
 #include <string>
+#include "IntListHelper.h"
 
 int main()
 {
@@ -21,6 +22,11 @@ int main()
 	cout << list.size() << endl;
 	cout << list.toString() << endl;
 	*/
+
+	int* list = getIntList(10);
+	print(list, 10);
+
+	delete[] list;
 
 	return 0;
 }
