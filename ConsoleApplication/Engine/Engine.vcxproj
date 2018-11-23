@@ -154,6 +154,7 @@
     <ClInclude Include="IntListHelper.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Sorting.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />

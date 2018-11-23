@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "IntListHelper.h"
+#include "Sorting.h"
 
 int main()
 {
@@ -24,6 +25,9 @@ int main()
 	*/
 
 	int* list = getIntList(10);
+	print(list, 10);
+
+	shuffle(list, 10);
 	print(list, 10);
 
 	delete[] list;
