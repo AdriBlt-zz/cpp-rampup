@@ -33,6 +33,12 @@ int main()
 	bubbleSort(list, 10);
 	print(list, 10);
 
+	shuffle(list, 10);
+	print(list, 10);
+
+	mergeSort(list, 10);
+	print(list, 10);
+
 	delete[] list;
 
 	return 0;
