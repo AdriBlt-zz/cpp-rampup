@@ -24,20 +24,28 @@ int main()
 	cout << list.toString() << endl;
 	*/
 
-	int* list = getIntList(10);
-	print(list, 10);
+	int size = 10;
 
-	shuffle(list, 10);
-	print(list, 10);
+	int* list = getIntList(size);
+	print(list, size);
 
-	bubbleSort(list, 10);
-	print(list, 10);
+	shuffle(list, size);
+	print(list, size);
 
-	shuffle(list, 10);
-	print(list, 10);
+	bubbleSort(list, size);
+	print(list, size);
 
-	mergeSort(list, 10);
-	print(list, 10);
+	shuffle(list, size);
+	print(list, size);
+
+	mergeSort(list, size);
+	print(list, size);
+
+	shuffle(list, size);
+	print(list, size);
+
+	quickSort(list, size);
+	print(list, size);
 
 	delete[] list;
 

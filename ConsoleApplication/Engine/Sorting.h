@@ -93,3 +93,50 @@ void mergeSort(T* list, int length, int begin = 0) {
 	// Or the right array is empty
 	// > The Left array is already sorted and at the rigth place
 }
+
+template <class T>
+void quickSort(T* list, int length, int begin = 0) {
+	if (length < 2) {
+		return;
+	}
+
+	// Choose a pivot value and put it on the right
+	int pivotIndex = begin + length - 1;
+	T pivotValue = list[pivotIndex];
+
+	int leftIndex = begin;
+	int rightIndex = pivotIndex - 1;
+	while (leftIndex < rightIndex) {
+		// Searching from right to left values lower than the pivot
+		if (list[rightIndex] >= pivotValue) {
+			rightIndex--;
+			continue;
+		}
+
+		// Searching from left to right values highter than the pivot
+		if (list[leftIndex] <= pivotValue) {
+			leftIndex++;
+			continue;
+		}
+
+		// Swaping them and move to the center until the 2 indexes meet
+		swap(&list[leftIndex], &list[rightIndex]);
+		leftIndex++;
+		rightIndex--;
+	}
+
+	// Swaping the pivot with the highter value the most on the left
+	// "nextPivotIndex = rightIndex" if all values are bigger than the pivot
+	int nextPivotIndex = list[rightIndex] <= pivotValue ? rightIndex + 1 : rightIndex; 
+
+	if (nextPivotIndex != pivotIndex) {
+		swap(&list[nextPivotIndex], &list[pivotIndex]);
+	}
+
+	// Calling quickSort on the two sub lists
+	int leftLength = nextPivotIndex - begin;
+	quickSort(list, leftLength, begin);
+
+	int rightLength = length - leftLength - 1;
+	quickSort(list, rightLength, nextPivotIndex + 1);
+}
