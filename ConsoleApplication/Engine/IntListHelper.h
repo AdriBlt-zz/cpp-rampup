@@ -17,3 +17,16 @@ int* getIntList(int length) {
 
 	return list;
 }
+
+bool isOrdered(int* list, int length) {
+	int previousValue = list[0];
+	for (int i = 1; i < length; i++) {
+		if (list[i] < previousValue) {
+			return false;
+		}
+
+		previousValue = list[i];
+	}
+
+	return true;
+}

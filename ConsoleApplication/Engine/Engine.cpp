@@ -27,24 +27,31 @@ int main()
 	int size = 10;
 
 	int* list = getIntList(size);
+	cout << "Generate: " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	shuffle(list, size);
+	cout << "Shuffle : " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	bubbleSort(list, size);
+	cout << "Bubble  : " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	shuffle(list, size);
+	cout << "Shuffle : " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	mergeSort(list, size);
+	cout << "Merge   : " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	shuffle(list, size);
+	cout << "Shuffle : " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	quickSort(list, size);
+	cout << "Quick   : " << isOrdered(list, size) << " : ";
 	print(list, size);
 
 	delete[] list;
