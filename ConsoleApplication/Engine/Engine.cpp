@@ -5,56 +5,19 @@
 #include <iostream>
 #include <string>
 #include "IntListHelper.h"
+#include "LinkedList.h"
 #include "Sorting.h"
+
+void mainLinkedList();
+void mainSorting();
 
 int main()
 {
-	using namespace std;
-
-	/* // LinkedList
-	LinkedList<std::string> list;
-	for (int i = 0; i < 10; i++) {
-		string value = to_string(i*i);
-		list.pushFirst(value);
-	}
-
-	cout << list.popFirst() << endl;
-	cout << list.peekFirst() << endl;
-	cout << list.size() << endl;
-	cout << list.toString() << endl;
-	*/
-
-	int size = 10;
-
-	int* list = getIntList(size);
-	cout << "Generate: " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	shuffle(list, size);
-	cout << "Shuffle : " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	bubbleSort(list, size);
-	cout << "Bubble  : " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	shuffle(list, size);
-	cout << "Shuffle : " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	mergeSort(list, size);
-	cout << "Merge   : " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	shuffle(list, size);
-	cout << "Shuffle : " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	quickSort(list, size);
-	cout << "Quick   : " << isOrdered(list, size) << " : ";
-	print(list, size);
-
-	delete[] list;
+	// LinkedList
+	mainLinkedList();
+	
+	// Sorting
+	mainSorting();
 
 	return 0;
 }
@@ -69,3 +32,44 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+void mainLinkedList()
+{
+	LinkedList<int> list;
+	for (int i = 0; i < 10; i++) {
+		list.pushFirst(i*i);
+	}
+
+	std::cout << list.popFirst() << std::endl;
+	std::cout << list.peekFirst() << std::endl;
+	std::cout << list.size() << std::endl;
+	std::cout << list << std::endl;
+}
+
+void DisplayList(int* list, const int size, const char* name) {
+	std::cout << name << ": " << isOrdered(list, size) << " : ";
+	print(list, size);
+}
+
+void ShuffleSortDisplay(int* list, const int size, const char* name, void(*sortFuncPtr)(int*, int)) {
+	shuffle(list, size);
+	DisplayList(list, size, "Shuffle");
+
+	sortFuncPtr(list, size);
+	DisplayList(list, size, name);
+}
+
+void mainSorting()
+{
+	using namespace std;
+	int size = 10;
+
+	int* list = getIntList(size);
+	DisplayList(list, size, "Generate");
+
+	ShuffleSortDisplay(list, size, "Bubble  ", bubbleSort);
+	ShuffleSortDisplay(list, size, "Merge   ", mergeSort);
+	ShuffleSortDisplay(list, size, "Quick   ", quickSort);
+
+	delete[] list;
+}

@@ -44,7 +44,7 @@ void bubbleSort(T* list, int length) {
 }
 
 template <class T>
-void mergeSort(T* list, int length, int begin = 0) {
+void mergeSort(T* list, int length, int begin) {
 	if (length < 2) {
 		return;
 	}
@@ -95,7 +95,12 @@ void mergeSort(T* list, int length, int begin = 0) {
 }
 
 template <class T>
-void quickSort(T* list, int length, int begin = 0) {
+void mergeSort(T* list, int length) {
+	mergeSort(list, length, 0);
+}
+
+template <class T>
+void quickSort(T* list, int length, int begin) {
 	if (length < 2) {
 		return;
 	}
@@ -139,4 +144,9 @@ void quickSort(T* list, int length, int begin = 0) {
 
 	int rightLength = length - leftLength - 1;
 	quickSort(list, rightLength, nextPivotIndex + 1);
+}
+
+template <class T>
+void quickSort(T* list, int length) {
+	quickSort(list, length, 0);
 }

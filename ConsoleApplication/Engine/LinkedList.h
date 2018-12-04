@@ -4,8 +4,6 @@
 template <class T>
 class LinkedList {
 private:
-
-	template <class T>
 	class Node {
 	public:
 		T m_value;
@@ -14,12 +12,15 @@ private:
 		Node(T& value) : m_value(value) {}
 	};
 
-	Node<T>* m_head;
-	Node<T>* m_tail;
+	Node* m_head;
+	Node* m_tail;
 	int m_length;
 
 public:
-	LinkedList() : m_length(0) {}
+	LinkedList() : 
+		m_length(0),
+		m_head(nullptr),
+		m_tail(nullptr) {}
 
 	int size() {
 		return m_length;
@@ -31,12 +32,33 @@ public:
 	T peekLast() const;
 	T popFirst();
 	T popLast();
-	std::string toString() const;
+
+	friend std::ostream& operator<< (std::ostream& out, const LinkedList<T>& list) {
+		if (list.m_length == 0) {
+			out << "[]";
+		}
+		else {
+			out << "[ ";
+			Node* node = list.m_head;
+			for (int i = 0; i < list.m_length; i++) {
+				if (i > 0) {
+					out << ", ";
+				}
+
+				out << node->m_value;
+				node = node->m_next;
+			}
+
+			out << " ]";
+		}
+
+		return out;
+	}
 };
 
 template <class T>
 void LinkedList<T>::pushLast(T value) {
-	Node<T>* node = new Node<T>(value);
+	Node* node = new Node(value);
 
 	if (m_length == 0) {
 		m_head = node;
@@ -53,7 +75,7 @@ void LinkedList<T>::pushLast(T value) {
 
 template <class T>
 void LinkedList<T>::pushFirst(T value) {
-	Node<T>* node = new Node<T>(value);
+	Node* node = new Node(value);
 
 	if (m_length == 0) {
 		m_head = node;
@@ -97,6 +119,10 @@ T LinkedList<T>::popFirst() {
 	if (m_length > 0) {
 		m_head = m_head->m_next;
 	}
+	else {
+		m_head = nullptr;
+		m_tail = nullptr;
+	}
 
 	return value;
 }
@@ -112,22 +138,10 @@ T LinkedList<T>::popLast() {
 	if (m_length > 0) {
 		m_tail = m_tail->m_previous;
 	}
-
-	return value;
-}
-
-template <class T>
-std::string LinkedList<T>::toString() const {
-	std::string output = "";
-	Node<T>* node = m_head;
-	for (int i = 0; i < m_length; i++) {
-		if (output.length() > 0) {
-			output += ",";
-		}
-
-		output += node->m_value;
-		node = node->m_next;
+	else {
+		m_head = nullptr;
+		m_tail = nullptr;
 	}
 
-	return "[" + output + "]";
+	return value;
 }
